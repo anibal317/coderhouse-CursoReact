@@ -1,0 +1,1 @@
+Use npx create-react-app <app_name> para crear app de react sin tener q tener instalado el create-react-app
