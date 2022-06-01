@@ -6,7 +6,7 @@ export class ItemListContainer extends Component {
 		return (
 			<div>
 				<Card style={{ width: "18rem" }}>
-					<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+					<Card.Img variant="top" src="https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png" />
 					<Card.Body>
 						<Card.Title>Card Title</Card.Title>
 						<Card.Text>
