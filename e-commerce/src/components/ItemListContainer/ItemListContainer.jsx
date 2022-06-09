@@ -1,32 +1,39 @@
-import React, { Component } from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { getFetch } from "../../helpers/getFetch";
+import ItemList from "../ItemList/ItemList";
 
-export class ItemListContainer extends Component {
-	render() {
-		return (
-			<div>
-				<Card style={{ width: "18rem" }}>
-					<Card.Img variant="top" src="https://www.worldartfoundations.com/wp-content/uploads/2022/04/placeholder-image.png" />
-					<Card.Body>
-						<Card.Title>Card Title</Card.Title>
-						<Card.Text>
-							Some quick example text to build on the card title and make up the
-							bulk of the card's content.
-						</Card.Text>
-					</Card.Body>
-					<ListGroup className="list-group-flush">
-						<ListGroupItem>Cras justo odio</ListGroupItem>
-						<ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-						<ListGroupItem>Vestibulum at eros</ListGroupItem>
-					</ListGroup>
-					<Card.Body>
-						<Card.Link href="#">Card Link</Card.Link>
-						<Card.Link href="#">Another Link</Card.Link>
-					</Card.Body>
-				</Card>
-			</div>
-		);
+const ItemListContainer = () => {
+	const [products, setProducts] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
+
+	useEffect(() => {
+		getFetch()
+			.then((res) => {
+				setProducts(res);
+			})
+			.catch((e) => setError(true))
+			.finally(() => setLoading(false));
+	}, []);
+
+	if (loading) {
+		return <div>Loading...</div>;
 	}
-}
+	if (error) {
+		return <div>An error has ocurred</div>;
+	}
+
+	return (
+		<div>
+			<h1>Productos</h1>
+
+			{products.map((product) => (
+				<div style={{width: "18rem"}} title="alam" className="card">
+					<ItemList key={product.id} itemName={product.name} itemImg={product.img} itemDesc={product.description} itemStock={product.stock}/>
+				</div>
+			))}
+		</div>
+	);
+};
 
 export default ItemListContainer;
