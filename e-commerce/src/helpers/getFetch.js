@@ -30,3 +30,10 @@ export const getFetch = () => {
 	});
 };
 
+export const getFetchById = () => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(arrData[0]);
+		}, 3000);
+	});
+};

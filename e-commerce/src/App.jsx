@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react'
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import ItemDetailConrainer from './components/ItemDetailContainer/ItemDetailConrainer';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,6 +17,9 @@ function App() {
     <div className="App">
       <NavBar/>
       <ItemListContainer/>
+      <hr/>
+      <ItemDetailConrainer/>
+      <hr/>
       <h2>La cantidad es = {count}</h2>
       <button onClick={increaseCount}>Aumentar </button>
     </div>
