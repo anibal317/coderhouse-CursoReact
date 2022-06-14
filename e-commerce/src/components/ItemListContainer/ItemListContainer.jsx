@@ -27,11 +27,19 @@ const ItemListContainer = () => {
 		<div>
 			<h1>Productos</h1>
 
-			{products.map((product) => (
-				<div style={{width: "18rem"}} title="alam" className="card">
-					<ItemList key={product.id} itemName={product.name} itemImg={product.img} itemDesc={product.description} itemStock={product.stock}/>
-				</div>
-			))}
+			<div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+				{products.map((product) => (
+					<div style={{ width: "18rem" }} title="alam" className="card">
+						<ItemList
+							key={product.id}
+							itemName={product.name}
+							itemImg={product.img}
+							itemDesc={product.description}
+							itemStock={product.stock}
+						/>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 };
