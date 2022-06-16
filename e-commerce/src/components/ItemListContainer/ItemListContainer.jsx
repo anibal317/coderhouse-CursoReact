@@ -7,6 +7,8 @@ const ItemListContainer = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 
+
+
 	useEffect(() => {
 		getFetch()
 			.then((res) => {
@@ -29,9 +31,14 @@ const ItemListContainer = () => {
 
 			<div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
 				{products.map((product) => (
-					<div style={{ width: "18rem" }} title="alam" className="card">
+					<div
+						key={product.id}
+						style={{ width: "18rem" }}
+						title="alam"
+						className="card"
+					>
 						<ItemList
-							key={product.id}
+							itemId={product.id}
 							itemName={product.name}
 							itemImg={product.img}
 							itemDesc={product.description}
