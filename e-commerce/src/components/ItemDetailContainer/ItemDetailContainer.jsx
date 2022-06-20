@@ -31,7 +31,7 @@ function ItemDetailConrainer() {
 				marginLeft: "20px",
 			}}
 		>
-			<img src={productDetail.img} style={{ marginRight: "20px" }} />
+			<img src={require(`../ItemDetail/src/imgs/${productDetail.img}`)} style={{ marginRight: "20px" }} alt=""/>
 			<div
 				key={productDetail.id}
 				style={{ width: "18rem" }}

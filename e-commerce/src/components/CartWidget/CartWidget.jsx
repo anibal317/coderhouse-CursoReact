@@ -5,7 +5,7 @@ export class CartWidget extends Component {
 	render() {
 		return(
 			<>
-				<img src={imgCart} className=''/>
+				<img src={require('./src/imgs/shopping-cart-40px.png')} className='' alt=""/>
 			</>
 		);
 	}
