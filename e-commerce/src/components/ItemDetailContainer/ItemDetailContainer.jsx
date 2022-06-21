@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getFetch } from "../../helpers/getFetch";
+import Counter from "../Counter/Counter";
 
 function ItemDetailConrainer() {
 	const [productDetail, setProductDetail] = useState([]);
@@ -46,6 +47,8 @@ function ItemDetailConrainer() {
 					<p className="list-group-item">Stock: {productDetail.stock}</p>
 				</div>
 			</div>
+			<Counter />
+
 		</div>
 	);
 }

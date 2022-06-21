@@ -1,11 +1,9 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-import Counter from "../Counter/Counter";
 
 function ItemDetail({ name, img, desc, stock, Id }) {
 	const urlImg= "./src/imgs/"+img
-	console.log(urlImg)
 	return (
 		<div className="text-center">
 			<div className="card-header">
@@ -24,7 +22,6 @@ function ItemDetail({ name, img, desc, stock, Id }) {
 				</button>
         </Link>
 			</div>
-			<Counter />
 
 		</div>
 	);
