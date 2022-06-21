@@ -5,7 +5,6 @@ import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import Cart from "./components/Cart/Cart";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Counter from "./components/Counter/Counter";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
 				<Route path="/cart" element={<Cart />} />
 				<Route path="*" element={<PageNotFound />} />
 			</Routes>
-			<Counter />
 		</BrowserRouter>
 	);
 }
