@@ -11,21 +11,21 @@ const arrData = [
 		name: "Sprite 1Lts 1/4",
 		description: "Refresco de cola",
 		stock: 50,
-        img:'https://continuum.aeped.es/img/200x200.gif'
+        img:'productPlaceHolder(1).png'
 	},
 	{
 		id: 3,
 		name: "Agua mineral 500c.c",
 		description: "Agua sin gas",
 		stock: 150,
-        img:'https://continuum.aeped.es/img/200x200.gif'
+        img:'productPlaceHolder.png'
 	},
 	{
 		id: 4,
 		name: "Gatorade 500c.c",
 		description: "Bebida energiznate",
 		stock: 550,
-        img:'https://continuum.aeped.es/img/200x200.gif'
+        img:'productPlaceHolder200x300.png'
 	},
 ];
 

@@ -24,7 +24,6 @@ const ItemListContainer = () => {
 	if (error) {
 		return <div>An error has ocurred</div>;
 	}
-	console.log(window.location.href)
 	return (
 		<div>
 			<h1>Productos</h1>
