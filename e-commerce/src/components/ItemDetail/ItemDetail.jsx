@@ -9,7 +9,7 @@ function ItemDetail({ name, img, desc, stock, Id }) {
 			<div className="card-header">
 				<h5 className="card-title text-center">{name}</h5>
 			</div>
-			<img className="card-img-top" src={require(`${urlImg}`)} alt="Card image cap" />
+			<img className="card-img-top" src={require(`${urlImg}`)} alt="" />
 			<div className="card-body">
 				<p className="card-text">
 					{desc} - stcok actual: {stock} unidades

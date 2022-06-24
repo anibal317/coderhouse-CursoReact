@@ -1,25 +1,60 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import "./src/css/style.css"
-function Counter() {
+import { CarContext, useCartContext } from "../../contexts/cartContext";
+import "./src/css/style.css";
+
+function Counter({ prod }) {
 	const [count, setCount] = useState(0);
+	const { addToCart } = useContext(CarContext);
+
 	function increaseCount() {
 		setCount(count + 1);
 	}
 
+	function decreaseCount() {
+		setCount(count - 1);
+	}
+
+	const onAdd = () => {
+		addToCart({ ...prod, quantity: count });
+	};
+
+console.log(count)
+
 	return (
-			count > 0
-			?
-					<div> 
-						<Link to={`/cart`}>
-							<button href="#" className="btn btn-outline-primary btn-block">IR A CARRITO</button>
-						</Link> 
+		<div>
+			<div>
+				<div className="p-2">
+					<div className=" border border-primary text-center p-3">
+						<h2 className="bg-secondary p-2 m-2"> {count}</h2>
+						<button className="btn btn-success p-2" onClick={increaseCount}>
+							Add
+						</button>
+						<button className="btn btn-danger p-2 " onClick={decreaseCount}>
+							Less
+						</button>
 					</div>
-			:
-					<div >
-						<h2>La cantidad es = {count}</h2>
-						<button onClick={increaseCount}>Aumentar </button>
-					</div>		
+				</div>
+			</div>
+			{count > 0 ? (
+				<div>
+					<div className="container text-center mt-2 mb-2">
+						<button className="btn btn-primary" onClick={onAdd}>
+							Agregar al Carrito
+						</button>
+					</div>
+					<div className="text-center mb-3">
+						<Link to={`/cart`}>
+							<button href="#" className="btn btn-outline-success btn-block">
+								Ir al carrito
+							</button>
+						</Link>
+					</div>
+				</div>
+			) : (
+				""
+			)}
+		</div>
 	);
 }
 

@@ -7,12 +7,13 @@ function ItemDetailConrainer() {
 	const [productDetail, setProductDetail] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
-	const {detalleId} = useParams()
+	const { detalleId } = useParams();
+
 
 	useEffect(() => {
 		getFetch()
 			.then((res) => {
-				setProductDetail(res.find(el=> el.id==detalleId));
+				setProductDetail(res.find((el) => el.id == detalleId));
 			})
 			.catch((e) => setError(true))
 			.finally(() => setLoading(false));
@@ -32,7 +33,11 @@ function ItemDetailConrainer() {
 				marginLeft: "20px",
 			}}
 		>
-			<img src={require(`../ItemDetail/src/imgs/${productDetail.img}`)} style={{ marginRight: "20px" }} alt=""/>
+			<img
+				src={require(`../ItemDetail/src/imgs/${productDetail.img}`)}
+				style={{ marginRight: "20px" }}
+				alt=""
+			/>
 			<div
 				key={productDetail.id}
 				style={{ width: "18rem" }}
@@ -47,8 +52,7 @@ function ItemDetailConrainer() {
 					<p className="list-group-item">Stock: {productDetail.stock}</p>
 				</div>
 			</div>
-			<Counter />
-
+			<Counter prod={productDetail} />
 		</div>
 	);
 }
