@@ -12,7 +12,6 @@ function ItemList({
 }) {
 	return (
 		<div>
-			ItemList
 			<ItemDetail
 				className="card"
 				name={itemName}

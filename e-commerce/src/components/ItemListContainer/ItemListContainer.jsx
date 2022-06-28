@@ -1,20 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { getFetch } from "../../helpers/getFetch";
 import ItemList from "../ItemList/ItemList";
+import { collection, doc, getDocs, getFirestore } from "firebase/firestore";
 
 const ItemListContainer = () => {
 	const [products, setProducts] = useState([]);
+	const [firebaseProds, setFirebaseProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 
 	useEffect(() => {
-		getFetch()
-			.then((res) => {
-				setProducts(res);
-			})
+		// getFetch()
+		// 	.then((res) => {
+		// 		// setProducts(res);
+		// 	})
+		// 	.catch((e) => setError(true))
+		// 	.finally(() => setLoading(false));
+
+		const db =getFirestore()
+		// const queryItem = doc(db, "productos", "ESjfHQtNqewACinWpI2I");
+		// getDoc(queryItem) //promesa
+		const queryCollection = collection(db, "productos");
+		getDocs(queryCollection)
+			.then((res) =>
+				setProducts(
+					res.docs.map((item) => ({
+						id: item.id,
+						...item.data(),
+					}))
+				)
+			)
 			.catch((e) => setError(true))
 			.finally(() => setLoading(false));
 	}, []);
+
+	console.log(firebaseProds);
 
 	if (loading) {
 		return <div>Loading...</div>;
@@ -24,7 +44,7 @@ const ItemListContainer = () => {
 	}
 	return (
 		<div>
-			<h1>Productos (ItemListContainer)</h1>
+			<h1>Productos</h1>
 
 			<div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
 				{products.map((product) => (

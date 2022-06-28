@@ -14,7 +14,7 @@ function Counter({ prod }) {
 
 	function decreaseCount() {
 		setCount(count - 1);
-	}
+	} 
 
 	const onAdd = () => {
 		if (productExist(prod.id)) {

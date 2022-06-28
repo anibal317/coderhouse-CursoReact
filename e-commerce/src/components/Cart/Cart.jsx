@@ -4,7 +4,7 @@ import { CarContext } from "../../contexts/cartContext";
 
 function Cart() {
 	const { cart, vaciarCarrito } = useContext(CarContext);
-	console.log(cart);
+	console.log("Hola",cart);
 	return cart.length === 0 ? (
 		<div className="container">No Hay elementos</div>
 	) : (
@@ -14,10 +14,11 @@ function Cart() {
 			</div>
 			<div className="cart-container  d-flex flex-row p-2 ml-2">
 				{cart.map((item) => (
+					
 					<div key={item.id} className="container border border-primary">
 						<div>
 							<img
-								src={require(`../ItemDetail/src/imgs/${item.img}`)}
+								src={item.img}
 								alt=""
 								className="w-25"
 							/>

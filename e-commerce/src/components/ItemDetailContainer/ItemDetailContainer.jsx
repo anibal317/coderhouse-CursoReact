@@ -1,3 +1,4 @@
+import { collection, doc, getDoc, getFirestore } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getFetch } from "../../helpers/getFetch";
@@ -10,10 +11,17 @@ function ItemDetailConrainer() {
 	const { detalleId } = useParams();
 
 	useEffect(() => {
-		getFetch()
-			.then((res) => {
-				setProductDetail(res.find((el) => el.id == detalleId));
-			})
+		// getFetch()
+		// 	.then((res) => {
+		// 		setProductDetail(res.find((el) => el.id == detalleId));
+		// 	})
+		// 	.catch((e) => setError(true))
+		// 	.finally(() => setLoading(false));
+		const db = getFirestore();
+		const queryItem = doc(db, "productos", detalleId);
+		console.log(detalleId);
+		getDoc(queryItem)
+			.then((res) => setProductDetail({ id: res.id, ...res.data() }))
 			.catch((e) => setError(true))
 			.finally(() => setLoading(false));
 	}, []);
@@ -25,7 +33,6 @@ function ItemDetailConrainer() {
 	}
 	return (
 		<div>
-			ItemDetailContainer
 			<div
 				style={{
 					display: "flex",
@@ -35,7 +42,7 @@ function ItemDetailConrainer() {
 				}}
 			>
 				<img
-					src={require(`../ItemDetail/src/imgs/${productDetail.img}`)}
+					src={productDetail.img}
 					style={{ marginRight: "20px" }}
 					alt=""
 					className="w-25"
