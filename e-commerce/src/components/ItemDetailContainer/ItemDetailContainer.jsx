@@ -9,7 +9,6 @@ function ItemDetailConrainer() {
 	const [error, setError] = useState(false);
 	const { detalleId } = useParams();
 
-
 	useEffect(() => {
 		getFetch()
 			.then((res) => {
@@ -25,36 +24,39 @@ function ItemDetailConrainer() {
 		return <div>An error has ocurred</div>;
 	}
 	return (
-		<div
-			style={{
-				display: "flex",
-				flexDirection: "row",
-				flexWrap: "wrap",
-				marginLeft: "20px",
-			}}
-		>
-			<img
-				src={require(`../ItemDetail/src/imgs/${productDetail.img}`)}
-				style={{ marginRight: "20px" }}
-				alt=""
-				className="w-25"
-			/>
+		<div>
+			ItemDetailContainer
 			<div
-				key={productDetail.id}
-				style={{ width: "18rem" }}
-				title="alam"
-				className="card"
+				style={{
+					display: "flex",
+					flexDirection: "row",
+					flexWrap: "wrap",
+					marginLeft: "20px",
+				}}
 			>
-				<h1>Detalle del Producto: {productDetail.name}</h1>
-				<div className="list-group">
-					<p className="list-group-item">
-						Detalle: {productDetail.description}
-					</p>
-					<p className="list-group-item">Stock: {productDetail.stock}</p>
-					<p>Precio: ${productDetail.price}</p>
+				<img
+					src={require(`../ItemDetail/src/imgs/${productDetail.img}`)}
+					style={{ marginRight: "20px" }}
+					alt=""
+					className="w-25"
+				/>
+				<div
+					key={productDetail.id}
+					style={{ width: "18rem" }}
+					title="alam"
+					className="card"
+				>
+					<h1>Detalle del Producto: {productDetail.name}</h1>
+					<div className="list-group">
+						<p className="list-group-item">
+							Detalle: {productDetail.description}
+						</p>
+						<p className="list-group-item">Stock: {productDetail.stock}</p>
+						<p>Precio: ${productDetail.price}</p>
+					</div>
 				</div>
+				<Counter prod={productDetail} />
 			</div>
-			<Counter prod={productDetail} />
 		</div>
 	);
 }

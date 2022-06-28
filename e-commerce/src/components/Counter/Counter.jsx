@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { CarContext, useCartContext } from "../../contexts/cartContext";
+import { CarContext } from "../../contexts/cartContext";
 import "./src/css/style.css";
 
 function Counter({ prod }) {
 	const [count, setCount] = useState(0);
-	const { addToCart } = useContext(CarContext);
+	const { addToCart, productExist, updateProductQuantity } =
+		useContext(CarContext);
 
 	function increaseCount() {
 		setCount(count + 1);
@@ -16,10 +17,12 @@ function Counter({ prod }) {
 	}
 
 	const onAdd = () => {
-		addToCart({ ...prod, quantity: count });
+		if (productExist(prod.id)) {
+			updateProductQuantity(prod,count);
+		} else {
+			addToCart({ ...prod, quantity: count });
+		}
 	};
-
-console.log(count)
 
 	return (
 		<div>
@@ -30,7 +33,7 @@ console.log(count)
 						<button className="btn btn-success p-2" onClick={increaseCount}>
 							Add
 						</button>
-						<button className="btn btn-danger p-2 " onClick={decreaseCount}>
+						<button className="btn btn-danger p-2" disabled={count<=0?"disabled":""}  onClick={decreaseCount}>
 							Less
 						</button>
 					</div>
@@ -57,5 +60,4 @@ console.log(count)
 		</div>
 	);
 }
-
 export default Counter;
