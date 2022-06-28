@@ -37,6 +37,7 @@ function ItemDetailConrainer() {
 				src={require(`../ItemDetail/src/imgs/${productDetail.img}`)}
 				style={{ marginRight: "20px" }}
 				alt=""
+				className="w-25"
 			/>
 			<div
 				key={productDetail.id}
@@ -50,6 +51,7 @@ function ItemDetailConrainer() {
 						Detalle: {productDetail.description}
 					</p>
 					<p className="list-group-item">Stock: {productDetail.stock}</p>
+					<p>Precio: ${productDetail.price}</p>
 				</div>
 			</div>
 			<Counter prod={productDetail} />

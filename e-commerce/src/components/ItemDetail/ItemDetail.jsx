@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
-function ItemDetail({ name, img, desc, stock, Id }) {
+function ItemDetail({ name, img, desc, stock, Id, price }) {
 	const urlImg= "./src/imgs/"+img
 	return (
 		<div className="text-center">
@@ -14,10 +14,11 @@ function ItemDetail({ name, img, desc, stock, Id }) {
 				<p className="card-text">
 					{desc} - stcok actual: {stock} unidades
 				</p>
+				<p>Precio: ${price}</p>
 			</div>
 			<div className="card-footer text-center">
         <Link to={`/detalle/${Id}`}>
-				<button href="#" className="btn btn-outline-primary btn-block">
+				<button className="btn btn-outline-primary btn-block">
 					Buy
 				</button>
         </Link>

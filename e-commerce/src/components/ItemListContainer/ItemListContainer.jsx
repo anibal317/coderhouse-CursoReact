@@ -40,6 +40,7 @@ const ItemListContainer = () => {
 							itemImg={product.img}
 							itemDesc={product.description}
 							itemStock={product.stock}
+							itemPrice={product.price}
 						/>
 					</div>
 				))}
