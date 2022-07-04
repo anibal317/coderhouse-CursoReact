@@ -7,6 +7,8 @@ Estos procutos fueron cargados previamente en firebase, de la misma manera que s
     
     Se detallan brevemente las librerías utilizadas
 
+    Firebase: Se utiliza para la persistencia de los productos y l as compras
+
 ## Available Scripts
 
 ### Firebase: Para guarda la información de las compras, conjuntamente con la creación de los producots
