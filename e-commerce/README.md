@@ -1,8 +1,10 @@
 # Descripción del proyecto
+
 Este proyecto se trata de ralizar una tienda onlina, que permita la compra de productos.
 Estos procutos fueron cargados previamente en firebase, de la misma manera que si se agrega algún producto mas, estos sera visualizados
 
 # Librerías utilizadas
+    
     Se detallan brevemente las librerías utilizadas
 
 ## Available Scripts
