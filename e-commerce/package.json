@@ -1,6 +1,5 @@
 {
   "name": "e-commerce",
-  "homepage":"https://anibal317.github.io/coderhouse-CursoReact/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,8 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy":"gh-pages -d build https://$gh-pages@github.com/anibal317/coderhouse-CursoReact"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
