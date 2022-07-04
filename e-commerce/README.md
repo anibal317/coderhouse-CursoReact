@@ -9,6 +9,10 @@ Estos procutos fueron cargados previamente en firebase, de la misma manera que s
 
     Firebase: Se utiliza para la persistencia de los productos y l as compras
 
+# Usar este comando para correr el servidor local sólo usando la carpeta build
+serve -s build
+Realizar esta tarea luego de hacer el npm i
+
 ## Available Scripts
 
 ### Firebase: Para guarda la información de las compras, conjuntamente con la creación de los producots
