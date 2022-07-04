@@ -3,7 +3,6 @@ import {
 	collection,
 	doc,
 	documentId,
-	getDoc,
 	getDocs,
 	getFirestore,
 	query,
@@ -11,42 +10,47 @@ import {
 	where,
 	writeBatch,
 } from "firebase/firestore";
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { CarContext } from "../../contexts/cartContext";
 
 function Cart() {
 	const { cart, vaciarCarrito, precioTotal } = useContext(CarContext);
+	const [orderId, setOrderId] = useState("");
+
 	const db = getFirestore();
 
 	async function generarOrden(e) {
 		e.preventDefault();
 		let orden = {};
+		let items = cart.map((cartItem) => {
+			const id = cartItem.id;
+			const nombre = cartItem.name;
+			const precio = cartItem.price * cartItem.quantity;
 
+			return { id, nombre, precio };
+		});
+		console.log(items);
 		orden.buyer = {
 			name: "Jorge Sardón",
 			email: "jorge.sardon@myemail.net",
 			phone: "+54123456789",
 		};
 		orden.total = precioTotal();
-		orden.items = cart.map((cartItem) => {
-			const id = cartItem.id;
-			const nombre = cartItem.name;
-			const precio = cartItem.price * cartItem.quantity;
-
-			return [id, nombre, precio];
-		});
+		orden.items = items;
 		console.log(orden);
-		insertElement(orden)
-			.catch((e) => console.log(e.id))
-			.finally(updateStock());
+		await insertElement(orden).finally(updateStock());
 	}
 
 	async function insertElement(or) {
 		//Insert
 		const orderCollection = collection(db, "orders");
-		await addDoc(orderCollection, or).then((resp) => console.log(resp));
+		await addDoc(orderCollection, or).then((res) => {
+			console.log(res.id);
+			setIdOrder(res.id);
+		});
 	}
+
 	async function updateElement() {
 		//Update
 		const updateCollection = doc(db, "productos", "ESjfHQtNqewACinWpI2I");
@@ -82,8 +86,18 @@ function Cart() {
 		batch.commit();
 	}
 
+	function setIdOrder(id) {
+		setOrderId(id);
+	}
+
 	return cart.length === 0 ? (
-		<div className="container">No Hay elementos</div>
+		<div className="container">
+			{orderId === "" ? (
+				"Sin elementos comprados"
+			) : (
+				 orderId 
+			)}
+		</div>
 	) : (
 		<div className="text-center border border-primary">
 			<h3>Carrito</h3>
