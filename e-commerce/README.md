@@ -1,3 +1,17 @@
+# Descripción del proyecto
+Este proyecto se trata de ralizar una tienda onlina, que permita la compra de productos.
+Estos procutos fueron cargados previamente en firebase, de la misma manera que si se agrega algún producto mas, estos sera visualizados
+
+# Librerías utilizadas
+    Se detallan brevemente las librerías utilizadas
+
+## Available Scripts
+
+### Firebase: Para guarda la información de las compras, conjuntamente con la creación de los producots
+### React router dom: para el uso del ruteo
+
+ 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -51,8 +51,7 @@ function Cart() {
 	async function updateElement() {
 		//Update
 		const updateCollection = doc(db, "productos", "ESjfHQtNqewACinWpI2I");
-		updateDoc(updateCollection, { stock: 190 }).then((res) =>
-		);
+		updateDoc(updateCollection, { stock: 190 });
 	}
 
 	async function updateStock() {
