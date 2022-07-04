@@ -19,7 +19,6 @@ function ItemDetailConrainer() {
 		// 	.finally(() => setLoading(false));
 		const db = getFirestore();
 		const queryItem = doc(db, "productos", detalleId);
-		console.log(detalleId);
 		getDoc(queryItem)
 			.then((res) => setProductDetail({ id: res.id, ...res.data() }))
 			.catch((e) => setError(true))

@@ -23,7 +23,6 @@ function CartContextProvider({ children }) {
 	}
 
 	const updateProductQuantity = (filterObj,count) => {
-		console.log("Cart",cart)
 		let strfilter = filterObj.id;
 		let newQty = count;
 		cart.find((element) => {

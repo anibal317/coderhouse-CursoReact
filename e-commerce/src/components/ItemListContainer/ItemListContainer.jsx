@@ -34,7 +34,6 @@ const ItemListContainer = () => {
 			.finally(() => setLoading(false));
 	}, []);
 
-	console.log(firebaseProds);
 
 	if (loading) {
 		return <div>Loading...</div>;

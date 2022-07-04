@@ -30,7 +30,6 @@ function Cart() {
 
 			return { id, nombre, precio };
 		});
-		console.log(items);
 		orden.buyer = {
 			name: "Jorge Sardón",
 			email: "jorge.sardon@myemail.net",
@@ -38,7 +37,6 @@ function Cart() {
 		};
 		orden.total = precioTotal();
 		orden.items = items;
-		console.log(orden);
 		await insertElement(orden).finally(updateStock());
 	}
 
@@ -46,7 +44,6 @@ function Cart() {
 		//Insert
 		const orderCollection = collection(db, "orders");
 		await addDoc(orderCollection, or).then((res) => {
-			console.log(res.id);
 			setIdOrder(res.id);
 		});
 	}
@@ -55,7 +52,6 @@ function Cart() {
 		//Update
 		const updateCollection = doc(db, "productos", "ESjfHQtNqewACinWpI2I");
 		updateDoc(updateCollection, { stock: 190 }).then((res) =>
-			console.log("Actualizado")
 		);
 	}
 
@@ -95,7 +91,10 @@ function Cart() {
 			{orderId === "" ? (
 				"Sin elementos comprados"
 			) : (
-				 orderId 
+				<p>
+					Ud. ha realizado una compra con el siguiente código de seguimiento:{" "}
+					<span className="bg-success text-light">#{orderId}</span>
+				</p>
 			)}
 		</div>
 	) : (
