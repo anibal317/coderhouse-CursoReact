@@ -17,6 +17,7 @@ import { CarContext } from "../../contexts/cartContext";
 
 function Cart() {
 	const { cart, vaciarCarrito, precioTotal } = useContext(CarContext);
+	const db = getFirestore();
 
 	async function generarOrden(e) {
 		e.preventDefault();
@@ -36,43 +37,49 @@ function Cart() {
 			return [id, nombre, precio];
 		});
 		console.log(orden);
+		insertElement(orden)
+			.catch((e) => console.log(e.id))
+			.finally(updateStock());
+	}
 
-		const db = getFirestore();
-
-		//INsert
+	async function insertElement(or) {
+		//Insert
 		const orderCollection = collection(db, "orders");
-		await addDoc(orderCollection, orden)
-		.then((resp) => console.log(resp));
-
-
+		await addDoc(orderCollection, or).then((resp) => console.log(resp));
+	}
+	async function updateElement() {
 		//Update
-		// const updateCollection = doc(db, "productos", "ESjfHQtNqewACinWpI2I");
-		// updateDoc(updateCollection, { stock: 190 }).then((res)=>console.log("Actualizado"));
+		const updateCollection = doc(db, "productos", "ESjfHQtNqewACinWpI2I");
+		updateDoc(updateCollection, { stock: 190 }).then((res) =>
+			console.log("Actualizado")
+		);
+	}
 
+	async function updateStock() {
 		//Actualizar stock
-		// const queryCollection = collection(db, "productos");
-		// const queryActualizarStock = await query(
-		// 	queryCollection,
-		// 	where(
-		// 		documentId(),
-		// 		"in",
-		// 		cart.map((it) => it.id)
-		// 	)
-		// );
+		const queryCollection = collection(db, "productos");
+		const queryActualizarStock = await query(
+			queryCollection,
+			where(
+				documentId(),
+				"in",
+				cart.map((it) => it.id)
+			)
+		);
 
-		// const batch = writeBatch(db);
-		// await getDocs(queryActualizarStock)
-		// 	.then((res) =>
-		// 		res.docs.forEach((res) =>
-		// 			batch.update(res.ref, {
-		// 				stock:
-		// 					res.data().stock -
-		// 					cart.find((item) => item.id === res.id).quantity,
-		// 			})
-		// 		)
-		// 	)
-		// 	.finally(() => vaciarCarrito());
-		// batch.commit();
+		const batch = writeBatch(db);
+		await getDocs(queryActualizarStock)
+			.then((res) =>
+				res.docs.forEach((res) =>
+					batch.update(res.ref, {
+						stock:
+							res.data().stock -
+							cart.find((item) => item.id === res.id).quantity,
+					})
+				)
+			)
+			.finally(() => vaciarCarrito());
+		batch.commit();
 	}
 
 	return cart.length === 0 ? (
