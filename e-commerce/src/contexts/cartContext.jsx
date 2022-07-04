@@ -18,6 +18,10 @@ function CartContextProvider({ children }) {
 		return cart.find((element) => element.id === strfilter);
 	};
 
+	const precioTotal = ()=>{
+		return cart.reduce((contador,prod)=> contador+(prod.quantity*prod.price),0)
+	}
+
 	const updateProductQuantity = (filterObj,count) => {
 		console.log("Cart",cart)
 		let strfilter = filterObj.id;
@@ -36,7 +40,8 @@ function CartContextProvider({ children }) {
 				addToCart,
 				vaciarCarrito,
 				productExist,
-				updateProductQuantity
+				updateProductQuantity,
+				precioTotal
 			}}
 		>
 			{children}
