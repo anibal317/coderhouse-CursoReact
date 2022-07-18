@@ -1,14 +1,58 @@
 import React, { useEffect, useState } from "react";
 import ItemList from "../ItemList/ItemList";
-import { collection,  getDocs, getFirestore } from "firebase/firestore";
+import {
+	collection,
+	getDocs,
+	getFirestore,
+	query,
+	where,
+} from "firebase/firestore";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = () => {
 	const [products, setProducts] = useState([]);
 	// const [firebaseProds, setFirebaseProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
+	const { categoriaId } = useParams();
 
 	useEffect(() => {
+		const db = getFirestore();
+		const queryCollection = collection(db, "productos");
+
+		if (categoriaId) {
+
+			const queryCollectionFilter = query(
+				queryCollection,
+				where("category", "==", categoriaId)
+			);
+
+			getDocs(queryCollectionFilter)
+				.then((res) =>
+					setProducts(
+						res.docs.map((item) => ({
+							id: item.id,
+							...item.data(),
+						}))
+					)
+				)
+				.catch((e) => setError(true))
+				.finally(() => setLoading(false));
+		} else {
+
+			getDocs(queryCollection)
+				.then((res) =>
+					setProducts(
+						res.docs.map((item) => ({
+							id: item.id,
+							...item.data(),
+						}))
+					)
+				)
+				.catch((e) => setError(true))
+				.finally(() => setLoading(false));
+		}
+
 		// getFetch()
 		// 	.then((res) => {
 		// 		// setProducts(res);
@@ -16,23 +60,9 @@ const ItemListContainer = () => {
 		// 	.catch((e) => setError(true))
 		// 	.finally(() => setLoading(false));
 
-		const db =getFirestore()
 		// const queryItem = doc(db, "productos", "ESjfHQtNqewACinWpI2I");
 		// getDoc(queryItem) //promesa
-		const queryCollection = collection(db, "productos");
-		getDocs(queryCollection)
-			.then((res) =>
-				setProducts(
-					res.docs.map((item) => ({
-						id: item.id,
-						...item.data(),
-					}))
-				)
-			)
-			.catch((e) => setError(true))
-			.finally(() => setLoading(false));
 	}, []);
-
 
 	if (loading) {
 		return <div>Loading...</div>;

@@ -17,9 +17,9 @@ function NavBar() {
 						{/**
 						 * className={({isActive})=>isActive?'classActive':'classNoActive'}
 						*/}
-						<Link to="/accesorios">Accesorios</Link>
+						<Link to="/categoria/accesorios">Accesorios</Link>
 						<div className="p-3"> </div>
-						<Link to="/remeras">Remeras</Link>
+						<Link to="/categoria/remeras">Remeras</Link>
 						{/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
 							<NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
 							<NavDropdown.Item href="#action/3.2">
