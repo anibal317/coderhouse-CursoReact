@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import React, { useState } from "react";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CarContext } from "../../contexts/cartContext";
 
 function Cart() {
@@ -88,7 +89,10 @@ function Cart() {
 	return cart.length === 0 ? (
 		<div className="container">
 			{orderId === "" ? (
-				"Sin elementos comprados"
+				<div className="text-center">
+					<div>Sin elementos comprados</div>
+					<Link to={"/"} className="btn btn-primary">Volver a la tienda</Link>
+				</div>
 			) : (
 				<p>
 					Ud. ha realizado una compra con el siguiente código de seguimiento:{" "}

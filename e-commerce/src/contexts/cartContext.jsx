@@ -21,7 +21,15 @@ function CartContextProvider({ children }) {
 	const precioTotal = ()=>{
 		return cart.reduce((contador,prod)=> contador+(prod.quantity*prod.price),0)
 	}
-
+	const cantidadTotal = ()=>{
+		let total;
+		cart.forEach((item)=>{
+			console.log("item",item)
+			total=+item.quantity
+		})
+		return total
+	}
+	
 	const updateProductQuantity = (filterObj,count) => {
 		let strfilter = filterObj.id;
 		let newQty = count;
@@ -32,6 +40,8 @@ function CartContextProvider({ children }) {
 		});
 	};
 
+
+
 	return (
 		<CarContext.Provider
 			value={{
@@ -40,7 +50,8 @@ function CartContextProvider({ children }) {
 				vaciarCarrito,
 				productExist,
 				updateProductQuantity,
-				precioTotal
+				precioTotal,
+				cantidadTotal
 			}}
 		>
 			{children}

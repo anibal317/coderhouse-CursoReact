@@ -18,7 +18,20 @@ Realizar esta tarea luego de hacer el npm i
 ### Firebase: Para guarda la información de las compras, conjuntamente con la creación de los producots
 ### React router dom: para el uso del ruteo
 
- 
+
+# Listado de dependencias
+## bootstrap: 5.1.3
+    Permite utiliar las clases de bootstrap dentro de nuestro proyecto
+## firebase: 9.8.4
+    Permite la conexión con firebase y utilizar su propia api para el uso de los datos    
+## react-dom: 18.1.0
+    Permite el uso de los elementos del DOM de forma nativa
+## react-router-dom: 6.3.0
+    Permite manejar el ruteo dentro de nuestra aplicación
+## serve: 13.0.2
+
+
+
 
 # Getting Started with Create React App
 

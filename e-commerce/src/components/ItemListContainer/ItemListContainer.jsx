@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getFetch } from "../../helpers/getFetch";
 import ItemList from "../ItemList/ItemList";
-import { collection, doc, getDocs, getFirestore } from "firebase/firestore";
+import { collection,  getDocs, getFirestore } from "firebase/firestore";
 
 const ItemListContainer = () => {
 	const [products, setProducts] = useState([]);
-	const [firebaseProds, setFirebaseProducts] = useState([]);
+	// const [firebaseProds, setFirebaseProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 

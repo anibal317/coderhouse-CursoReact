@@ -1,13 +1,30 @@
-import React, { Component } from "react";
+import React, { useContext, useState } from "react";
+import { CarContext } from "../../contexts/cartContext";
+import './src/css/style.css';
 
-export class CartWidget extends Component {
-	render() {
-		return(
-			<>
-				<img src={require('./src/imgs/shopping-cart-40px.png')} className='' alt=""/>
-			</>
-		);
+
+export const CartWidget = () => {
+	const { cart, cantidadTotal } = useContext(CarContext);
+
+	function totalCantidadCarrito(){
+		let totalItems=0
+		cart.forEach(element => {
+			console.log(element.quantity)
+			totalItems+=element.quantity
+		});
+		// console.log(totalItems)
+		return totalItems
 	}
-}
-
-export default CartWidget;
+	// totalCantidadCarrito()
+console.log()
+	return (
+		<>
+		<div className="dot">{totalCantidadCarrito()}</div>
+			<img
+				src={require("./src/imgs/shopping-cart-40px.png")}
+				className=""
+				alt=""
+			/>
+		</>
+	);
+};

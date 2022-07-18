@@ -1,14 +1,14 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import React from 'react'
-import CartWidget from "../CartWidget/CartWidget";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
+import { CartWidget } from "../CartWidget/CartWidget";
 
 function NavBar() {
 	return (
 		<Navbar bg="light" expand="lg">
 			<Container>
-				<Navbar.Brand><Link to="/">Mi Tienda</Link></Navbar.Brand>
+				<Navbar.Brand><img className="mx-1" src={require('./src/img/clothes-rack-64.png')}/><Link to="/">Mi Tienda</Link></Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
@@ -17,7 +17,9 @@ function NavBar() {
 						{/**
 						 * className={({isActive})=>isActive?'classActive':'classNoActive'}
 						*/}
-						<Link to="/librería">Librería</Link>
+						<Link to="/accesorios">Accesorios</Link>
+						<div className="p-3"> </div>
+						<Link to="/remeras">Remeras</Link>
 						{/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
 							<NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
 							<NavDropdown.Item href="#action/3.2">
